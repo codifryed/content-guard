@@ -1,7 +1,7 @@
 #Content Guard
 
 A **WordPress plugin** for content protection.
-It used several techniques - CSS and Javascript - to achive this.
+It used several techniques - CSS and Javascript - to achieve this.
 
 This is intended for basic copy protection plugin for public facing content. 
 

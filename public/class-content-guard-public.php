@@ -73,6 +73,7 @@ class Content_Guard_Public {
 		 * class.
 		 */
 
+		// TODO: setup the conditions to call the protection css dependant on the ALL selector or per page array
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/content-guard-public.css', array(), $this->version, 'all' );
 
 	}
@@ -96,6 +97,7 @@ class Content_Guard_Public {
 		 * class.
 		 */
 
+        // TODO: setup the conditions to call the protection js dependant on the ALL selector or per page array
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/content-guard-public.js', array( 'jquery' ), $this->version, false );
 
 	}
