@@ -165,4 +165,36 @@ class Content_Guard_Admin
 
         return $post;
     }
+
+    public function add_settings_link($links)
+    {
+        $settings_link = array(
+            '<a href="' . admin_url('options-general.php?page=' . $this->plugin_name) . '">' . __('Settings') . '</a>',
+        );
+        return array_merge($settings_link, $links);
+    }
+
+    public function add_settings_page()
+    {
+        add_options_page('Content Guard Settings', 'Content Guard',
+            'manage_options', $this->plugin_name, array($this, 'display_settings_page',));
+    }
+
+    public function options_update()
+    {
+        register_setting($this->plugin_name, $this->plugin_name, array($this, 'sanitize_options'));
+    }
+
+    public function sanitize_options($input) {
+        $valid = array();
+
+        $valid['enable_protection'] =
+            isset($input['enable_protection']) && !empty($input['enable_protection']) ? 1 : 0;
+        return $valid;
+    }
+
+    public function display_settings_page()
+    {
+        include_once('partials/content-guard-admin-display.php');
+    }
 }
