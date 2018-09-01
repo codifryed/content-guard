@@ -1,4 +1,4 @@
-#Content Guard
+# Content Guard
 
 A **WordPress plugin** for content protection.
 It used several techniques - CSS and Javascript - to achieve this.
