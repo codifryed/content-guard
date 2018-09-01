@@ -12,7 +12,7 @@
  * Plugin URI:        https://github.com/codifryed/content-guard
  * Description:       Copy protection for public facing content.
  * Version:           1.0.0
- * Author:            Some
+ * Author:            Various
  * Author URI:        Open
  * License:           GPL-3.0
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.txt
