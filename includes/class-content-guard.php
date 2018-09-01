@@ -156,6 +156,8 @@ class Content_Guard {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_meta_boxes');
+		$this->loader->add_action( 'save_post', $plugin_admin, 'save_post');
 
 	}
 
