@@ -1,4 +1,4 @@
-(function ($) {
+jQuery(window).load(function () {
     'use strict';
 
     /**
@@ -33,17 +33,16 @@
         return false;
     };
 
-    // TODO: get correct element... entry-content
-    let meditationText = document.getElementById('hwg-meditation-canvas');
-    meditationText.classList.add('hwg-meditation-disable-select');
-    meditationText.oncopy = disableMe;
-    meditationText.oncut = disableMe;
-    meditationText.oncontextmenu = disableMe;
+    let content = document.getElementById('content');
+    content.classList.add('content-guard-disable-select');
+    content.oncopy = disableMe;
+    content.oncut = disableMe;
+    content.oncontextmenu = disableMe;
     //more security
-    meditationText.onmousedown = disableMe;
-    meditationText.style.cursor = 'default';
-    meditationText.style.MozUserSelect = 'none';
-    meditationText.onselectstart = disableMe;
-    meditationText.ondragstart = disableMe;
-       
-})(jQuery);
+    content.onmousedown = disableMe;
+    content.style.cursor = 'default';
+    content.style.MozUserSelect = 'none';
+    content.onselectstart = disableMe;
+    content.ondragstart = disableMe;
+
+});
