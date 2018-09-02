@@ -32,7 +32,8 @@ individual page instructions
         <?php
         $options = get_option($this->plugin_name);
 
-        $enable_protection = $options['enable_protection'];
+        $enable_protection = isset($options['enable_protection']) ? $options['enable_protection'] : 0;
+        $protect_all_content = isset($options['protect_all_content']) ? $options['protect_all_content'] : 0;
 
         // adds a nonce, option_page, action and http_referer field
         settings_fields($this->plugin_name);
@@ -46,6 +47,16 @@ individual page instructions
                                                                                      value="1"
                     <?php checked($enable_protection, 1); ?>
                 /> <span><?php esc_attr_e('Enable Content Guard', $this->plugin_name); ?></span> </label>
+        </fieldset>
+
+        <fieldset>
+            <legend class="screen-reader-text"><span>Protect all content</span></legend>
+            <label for="<?php echo $this->plugin_name; ?>-protect_all_content"> <input type="checkbox"
+                                                                                       id="<?php echo $this->plugin_name; ?>-protect_all_content"
+                                                                                       name="<?php echo $this->plugin_name; ?>[protect_all_content]"
+                                                                                       value="1"
+                    <?php checked($protect_all_content, 1); ?>
+                /> <span><?php esc_attr_e('Protect all site content', $this->plugin_name); ?></span> </label>
         </fieldset>
 
         <?php submit_button('Save', 'primary', 'Save', true); ?>

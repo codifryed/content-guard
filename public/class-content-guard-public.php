@@ -86,9 +86,10 @@ class Content_Guard_Public
          * class.
          */
         if (!empty($this->options['enable_protection'])) {
-            if ($this->page_is_protected()) {
-                wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/content-guard-public.css',
-                    array(), $this->version, 'all');
+            if (!empty($this->options['protect_all_content'])) {
+                $this->protection_css();
+            } elseif ($this->page_is_protected()) {
+                $this->protection_css();
             }
         }
     }
@@ -114,11 +115,24 @@ class Content_Guard_Public
          */
 
         if (!empty($this->options['enable_protection'])) {
-            if ($this->page_is_protected()) {
-                wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/content-guard-public.js',
-                    array('jquery'), $this->version, false);
+            if (!empty($this->options['protect_all_content'])) {
+                $this->protection_js();
+            } elseif ($this->page_is_protected()) {
+                $this->protection_js();
             }
         }
+    }
+
+    private function protection_css()
+    {
+        wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/content-guard-public.css',
+            array(), $this->version, 'all');
+    }
+
+    private function protection_js()
+    {
+        wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/content-guard-public.js',
+            array('jquery'), $this->version, false);
     }
 
     private function page_is_protected()
