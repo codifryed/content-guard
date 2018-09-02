@@ -1,4 +1,4 @@
-jQuery(window).load(function () {
+window.onload = function () {
     'use strict';
 
     /**
@@ -30,19 +30,31 @@ jQuery(window).load(function () {
      */
 
     let disableMe = function () {
-        return false;
+        let elemtype = window.event.srcElement.nodeName;
+
+        elemtype = elemtype.toUpperCase();
+
+        if (elemtype !== "TEXT" && elemtype !== "TEXTAREA" && elemtype !== "INPUT" && elemtype !== "PASSWORD" &&
+            elemtype !== "SELECT" && elemtype !== "OPTION" && elemtype !== "EMBED") {
+            return false;
+        } else {
+            return true;
+        }
     };
 
-    let content = document.getElementById('content');
-    content.classList.add('content-guard-disable-select');
-    content.oncopy = disableMe;
-    content.oncut = disableMe;
-    content.oncontextmenu = disableMe;
-    //more security
-    content.onmousedown = disableMe;
-    content.style.cursor = 'default';
-    content.style.MozUserSelect = 'none';
-    content.onselectstart = disableMe;
-    content.ondragstart = disableMe;
-
-});
+    let content = document.getElementById('main');
+    if (content === null) {
+        console.log('Content Guard: No main class on this page, protection disabled.')
+    } else {
+        content.classList.add('content-guard-disable-select');
+        content.oncopy = disableMe;
+        content.oncut = disableMe;
+        content.oncontextmenu = disableMe;
+        //more security
+        content.onmousedown = disableMe;
+        content.style.cursor = 'default';
+        content.style.MozUserSelect = 'none';
+        content.onselectstart = disableMe;
+        content.ondragstart = disableMe;
+    }
+};
