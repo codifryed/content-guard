@@ -42,6 +42,15 @@ class Content_Guard_Public
     private $version;
 
     /**
+     * The plugin options
+     *
+     * @since 1.0.0
+     * @access  private
+     * @var array $options The options for this plugin
+     */
+    private $options;
+
+    /**
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
@@ -53,6 +62,7 @@ class Content_Guard_Public
 
         $this->plugin_name = $plugin_name;
         $this->version = $version;
+        $this->options = get_option($this->plugin_name);
 
     }
 
@@ -75,9 +85,11 @@ class Content_Guard_Public
          * between the defined hooks and the functions defined in this
          * class.
          */
-
-        if ($this->page_is_protected()) {
-            wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/content-guard-public.css', array(), $this->version, 'all');
+        if (!empty($this->options['enable_protection'])) {
+            if ($this->page_is_protected()) {
+                wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/content-guard-public.css',
+                    array(), $this->version, 'all');
+            }
         }
     }
 
@@ -101,15 +113,18 @@ class Content_Guard_Public
          * class.
          */
 
-        if ($this->page_is_protected()) {
-            wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/content-guard-public.js', array('jquery'), $this->version, false);
+        if (!empty($this->options['enable_protection'])) {
+            if ($this->page_is_protected()) {
+                wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/content-guard-public.js',
+                    array('jquery'), $this->version, false);
+            }
         }
     }
 
     private function page_is_protected()
     {
         global $post;
-        $is_checked = get_post_meta($post->ID, '_'. str_replace('-', '_', $this->plugin_name). '_checked', true);
+        $is_checked = get_post_meta($post->ID, '_' . str_replace('-', '_', $this->plugin_name) . '_checked', true);
         if (!empty($is_checked)) {
             return true;
         }
