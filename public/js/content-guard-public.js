@@ -29,17 +29,18 @@ window.onload = function () {
      * practising this, we should strive to set a better example in our own work.
      */
 
-    let disableMe = function () {
-        let elemtype = window.event.srcElement.nodeName;
+    let disableMe = function (event) {
+        let elementType;
 
-        elemtype = elemtype.toUpperCase();
-
-        if (elemtype !== "TEXT" && elemtype !== "TEXTAREA" && elemtype !== "INPUT" && elemtype !== "PASSWORD" &&
-            elemtype !== "SELECT" && elemtype !== "OPTION" && elemtype !== "EMBED") {
-            return false;
+        if (navigator.userAgent.indexOf('MSIE') === -1) {
+            elementType = event.target.nodeName;
         } else {
-            return true;
+           elementType = window.event.srcElement.nodeName;
         }
+        elementType = elementType.toUpperCase();
+
+        return !(elementType !== "TEXT" && elementType !== "TEXTAREA" && elementType !== "INPUT" && elementType !== "PASSWORD" &&
+            elementType !== "SELECT" && elementType !== "OPTION" && elementType !== "EMBED");
     };
 
     let content = document.getElementById('main');
