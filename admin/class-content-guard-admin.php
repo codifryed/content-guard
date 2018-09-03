@@ -192,6 +192,8 @@ class Content_Guard_Admin
             isset($input['enable_protection']) && !empty($input['enable_protection']) ? 1 : 0;
         $valid['protect_all_content'] =
             isset($input['protect_all_content']) && !empty($input['protect_all_content']) ? 1 : 0;
+        $valid['disable_for_admins'] =
+            isset($input['disable_for_admins']) && !empty($input['disable_for_admins']) ? 1 : 0;
 
         return $valid;
     }

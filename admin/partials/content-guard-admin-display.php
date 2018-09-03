@@ -34,6 +34,7 @@ individual page instructions
 
         $enable_protection = isset($options['enable_protection']) ? $options['enable_protection'] : 0;
         $protect_all_content = isset($options['protect_all_content']) ? $options['protect_all_content'] : 0;
+        $disable_for_admins = isset($options['disable_for_admins']) ? $options['disable_for_admins'] : 0;
 
         // adds a nonce, option_page, action and http_referer field
         settings_fields($this->plugin_name);
@@ -57,6 +58,16 @@ individual page instructions
                                                                                        value="1"
                     <?php checked($protect_all_content, 1); ?>
                 /> <span><?php esc_attr_e('Protect all site content', $this->plugin_name); ?></span> </label>
+        </fieldset>
+
+        <fieldset>
+            <legend class="screen-reader-text"><span>Disable protection for admins</span></legend>
+            <label for="<?php echo $this->plugin_name; ?>-disable_for_admins"> <input type="checkbox"
+                                                                                      id="<?php echo $this->plugin_name; ?>-disable_for_admins"
+                                                                                      name="<?php echo $this->plugin_name; ?>[disable_for_admins]"
+                                                                                      value="1"
+                    <?php checked($disable_for_admins, 1); ?>
+                /> <span><?php esc_attr_e('Disable protection for admins', $this->plugin_name); ?></span> </label>
         </fieldset>
 
         <?php submit_button('Save', 'primary', 'Save', true); ?>
