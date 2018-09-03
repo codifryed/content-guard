@@ -51,7 +51,6 @@ window.onload = function () {
         content.oncopy = disableMe;
         content.oncut = disableMe;
         content.oncontextmenu = disableMe;
-        //more security
         content.onmousedown = disableMe;
         content.style.cursor = 'default';
         content.style.MozUserSelect = 'none';
