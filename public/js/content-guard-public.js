@@ -35,26 +35,39 @@ window.onload = function () {
         if (navigator.userAgent.indexOf('MSIE') === -1) {
             elementType = event.target.nodeName;
         } else {
-           elementType = window.event.srcElement.nodeName;
+            elementType = window.event.srcElement.nodeName;
         }
+
         elementType = elementType.toUpperCase();
 
         return !(elementType !== "TEXT" && elementType !== "TEXTAREA" && elementType !== "INPUT" && elementType !== "PASSWORD" &&
             elementType !== "SELECT" && elementType !== "OPTION" && elementType !== "EMBED");
     };
 
-    var content = document.getElementById('main');
-    if (content === null) {
-        console.log('Content Guard: No main class on this page, protection disabled.')
+    if (context !== undefined) {
+        var content;
+
+        if (context.content === 'main') {
+            content = document.getElementById('main');
+        } else if (context.content === 'body') {
+            content = document.body;
+        }
+
+        if (content === undefined) {
+            throw Error('Element: ' + context.content + ' not found.');
+        } else {
+            content.classList.add('content-guard-disable-select');
+            content.oncopy = disableMe;
+            content.oncut = disableMe;
+            content.oncontextmenu = disableMe;
+            content.onmousedown = disableMe;
+            content.style.cursor = 'default';
+            content.style.MozUserSelect = 'none';
+            content.onselectstart = disableMe;
+            content.ondragstart = disableMe;
+        }
+
     } else {
-        content.classList.add('content-guard-disable-select');
-        content.oncopy = disableMe;
-        content.oncut = disableMe;
-        content.oncontextmenu = disableMe;
-        content.onmousedown = disableMe;
-        content.style.cursor = 'default';
-        content.style.MozUserSelect = 'none';
-        content.onselectstart = disableMe;
-        content.ondragstart = disableMe;
+        throw Error('No context found.');
     }
 };

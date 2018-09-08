@@ -141,8 +141,12 @@ class Content_Guard_Public {
 	}
 
 	private function protection_js() {
+		$context_info = array(
+			'content' => !empty($this->options['html_protect']) ? 'body' : 'main',
+		);
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/content-guard-public.js',
-			array( 'jquery' ), $this->version, false );
+			array(), $this->version, true );
+		wp_localize_script( $this->plugin_name, 'context', $context_info );
 	}
 
 }
