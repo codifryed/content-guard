@@ -58,7 +58,7 @@ class Content_Guard_Admin {
 			'name'             => $this->plugin_name,
 			'name_underscores' => str_replace( '-', '_', $this->plugin_name ),
 			'title'            => __( 'Content Guard', $this->plugin_name ),
-			'protection_on'    => __( 'Turn protection on for this post', $this->plugin_name ),
+			'protection_on_text'    => __( 'Turn protection on for this post.', $this->plugin_name ),
 			'post_types'       => get_post_types( array( 'public' => true ) ),
 		);
 	}
@@ -147,14 +147,15 @@ class Content_Guard_Admin {
 		wp_nonce_field( $this->args['name'], $this->args['name'] . '-nonce' );
 
 		?>
-        <h4><?php echo $this->args['protection_on']; ?></h4>
+        <p>
         <fieldset>
             <legend class="screen-reader-text"><span>Turn content protection on</span></legend>
             <label for="<?php echo $this->args['name'] . '-checked'; ?>"> <input type="checkbox"
                                                                                  name="<?php echo $this->args['name'] . '-checked'; ?>"
                                                                                  value="1"
-					<?php checked( $is_checked, 1 ); ?>/> </label>
-        </fieldset>
+					<?php checked( $is_checked, 1 ); ?>/>
+				<?php echo $this->args['protection_on_text']; ?></label>
+        </fieldset></p>
 		<?php
 
 		return $post;
