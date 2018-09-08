@@ -55,11 +55,11 @@ class Content_Guard_Admin {
 		$this->plugin_name = $plugin_name;
 		$this->version     = $version;
 		$this->args        = Array(
-			'name'             => $this->plugin_name,
-			'name_underscores' => str_replace( '-', '_', $this->plugin_name ),
-			'title'            => __( 'Content Guard', $this->plugin_name ),
-			'protection_on_text'    => __( 'Turn protection on for this post.', $this->plugin_name ),
-			'post_types'       => get_post_types( array( 'public' => true ) ),
+			'name'               => $this->plugin_name,
+			'name_underscores'   => str_replace( '-', '_', $this->plugin_name ),
+			'title'              => __( 'Content Guard', $this->plugin_name ),
+			'protection_on_text' => __( 'Turn protection on for this post.', $this->plugin_name ),
+			'post_types'         => get_post_types( array( 'public' => true ) ),
 		);
 	}
 
@@ -195,5 +195,39 @@ class Content_Guard_Admin {
 
 	public function display_settings_page() {
 		include_once( 'partials/content-guard-admin-display.php' );
+	}
+
+	public function add_bulk_protection_action( $bulk_actions ) {
+		$bulk_actions['enable_content_guard']  = __( 'Enable Content Guard', $this->plugin_name );
+		$bulk_actions['disable_content_guard'] = __( 'Disable Content Guard', $this->plugin_name );
+
+		return $bulk_actions;
+	}
+
+	public function bulk_protection_handler( $redirect_to, $doaction, $post_ids ) {
+		if ( $doaction === 'enable_content_guard' || $doaction === 'disable_content_guard' ) {
+			foreach ( $post_ids as $post_id ) {
+				update_post_meta( $post_id, '_' . $this->args['name_underscores'] . '_checked',
+					$doaction === 'enable_content_guard' ? 1 : 0 );
+			}
+			$redirect_to = add_query_arg( 'dis_enabled_content_guard_posts', count( $post_ids ), $redirect_to );
+
+			return $redirect_to;
+
+		} else {
+			return $redirect_to;
+		}
+	}
+
+	public function bulk_protection_admin_notice() {
+		if ( ! empty( $_REQUEST['dis_enabled_content_guard_posts'] ) ) {
+			$count = intval( $_REQUEST['dis_enabled_content_guard_posts'] );
+			printf( '<div id="message" class="updated fade">' .
+			        _n( 'Enabled/Disabled Content Guard on %s post.',
+				        'Enabled/Disabled Content Guard on %s posts.',
+				        $count, $this->plugin_name ) .
+			        '</div>', $count
+			);
+		}
 	}
 }

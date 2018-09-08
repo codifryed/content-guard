@@ -73,6 +73,8 @@
 										<?php esc_attr_e( 'When this is not checked, protection is enabled on a per post and per page basis.',
 											$this->plugin_name ); ?><br/>
 										<?php esc_attr_e( 'Every post and page edit screen contains an option in the sidebar to enable protection for that content.',
+											$this->plugin_name ); ?><br/>
+										<?php esc_attr_e( 'You can also use the Bulk Action options for multiple posts at once.',
 											$this->plugin_name ); ?>
                                     </p>
                                 </div>
