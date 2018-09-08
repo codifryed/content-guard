@@ -63,18 +63,19 @@
                                                 name="<?php echo $this->plugin_name; ?>[protect_all_content]"
                                                 value="1"
 											<?php checked( $protect_all_content, 1 ); ?>
-                                        /> <span><?php esc_attr_e( 'Protect every page', $this->plugin_name ); ?></span>
+                                        /> <span><?php esc_attr_e( 'Protect every post/page', $this->plugin_name );
+											?></span>
                                     </h2>
                                 </label>
                                 <div class="inside">
                                     <p>
 										<?php esc_attr_e( 'Check this to enable protection on every post and page.',
 											$this->plugin_name ); ?><br/>
-										<?php esc_attr_e( 'When this is not checked, protection is enabled on a per post and per page basis.',
+										<?php esc_attr_e( 'When this is not checked, protection is enabled on a per post/page basis.',
 											$this->plugin_name ); ?><br/>
-										<?php esc_attr_e( 'Every post and page edit screen contains an option in the sidebar to enable protection for that content.',
+										<?php esc_attr_e( 'Every post/page edit screen contains an option in the sidebar to enable protection for that content.',
 											$this->plugin_name ); ?><br/>
-										<?php esc_attr_e( 'You can also use the Bulk Action options for multiple posts at once.',
+										<?php esc_attr_e( 'You can also use the Bulk Action options for multiple posts/pages at once.',
 											$this->plugin_name ); ?>
                                     </p>
                                 </div>
@@ -96,7 +97,7 @@
                                 </label>
                                 <div class="inside">
                                     <p>
-										<?php esc_attr_e( 'This protects the entire page or post, including headers and menus, not just the main content section.',
+										<?php esc_attr_e( 'This protects the entire post/page, including headers and menus, not just the main content section.',
 											$this->plugin_name ); ?>
                                     </p>
                                 </div>
