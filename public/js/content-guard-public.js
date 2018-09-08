@@ -29,8 +29,8 @@ window.onload = function () {
      * practising this, we should strive to set a better example in our own work.
      */
 
-    let disableMe = function (event) {
-        let elementType;
+    var disableMe = function (event) {
+        var elementType;
 
         if (navigator.userAgent.indexOf('MSIE') === -1) {
             elementType = event.target.nodeName;
@@ -43,7 +43,7 @@ window.onload = function () {
             elementType !== "SELECT" && elementType !== "OPTION" && elementType !== "EMBED");
     };
 
-    let content = document.getElementById('main');
+    var content = document.getElementById('main');
     if (content === null) {
         console.log('Content Guard: No main class on this page, protection disabled.')
     } else {
