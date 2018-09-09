@@ -2,7 +2,7 @@
 Contributors: (this should be a list of wordpress.org userid's)
 Donate link: Open
 Tags: content, protection
-Requires at least: 3.0.1
+Requires at least: 4.7
 Tested up to: 4.9.8
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
