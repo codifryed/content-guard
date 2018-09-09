@@ -33,8 +33,13 @@ Just ask.
 
 == Changelog ==
 
+= 1.1.0 =
+* Bulk enable & disable features added.
+
 = 1.0.0 =
 * First Version of the plugin.
 * Implements all main content protection methods on individual posts/pages and on the site as a whole.
+* Disable for admins feature.
+* protect entire page, not just the content - feature.
 
 == Upgrade Notice ==
